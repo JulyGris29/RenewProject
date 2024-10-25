@@ -1,0 +1,25 @@
+<div>
+    <div class="col-10 mx-auto my-5"></div>
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th>energyDetailId</th>
+                <th>buyDate</th>
+                <th>installationDate</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of energyDetail ; track $index) {
+            <tr>
+                <td>{{item.energyDetailId}}</td>
+                <td>{{item.buyDate}}</td>
+                <td>{{item.installationDate}}</td>
+                
+            </tr>
+            }
+        </tbody>
+        
+    </table>
+</div>
+
