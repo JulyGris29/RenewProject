@@ -1,10 +1,10 @@
 export class User {
+
     constructor(
-        public documentId: number,
+        public document_id: string,
         public address: string,
         public lastName: string,
         public name: string,        
-        public email: string       
-       
+        public email: string        
     ){}
 }

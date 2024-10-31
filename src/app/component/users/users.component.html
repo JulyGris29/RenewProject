@@ -1,0 +1,33 @@
+<div class="col-10 mx-auto my-5">
+
+    <table class="table table-striped-columns">
+        <thead>
+            <tr>
+                <th>documentId</th>
+                <th>name</th>
+                <th>lastName</th>
+                <th>email</th>
+                <th>address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of user; track $index) {
+            <tr>
+                <td>
+            <a [routerLink]="['/user', item.document_id]">{{item.document_id}}</a>
+                <td>
+                <td>{{item.name}}</td>
+                <td>{{item.lastName}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.address}}</td>
+                <td>
+                <button class="btn btn-danger" (click)="deleteUser(item.document_id)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+            <tr>
+            }
+        </tbody>
+
+    </table>
+</div>

@@ -1,23 +1,35 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { EnergyType } from '../../classes/energy-type';
+import { EnergyDetail } from '../../classes/energy-detail';
+import { EnergyDetailService } from '../../services/energy-detail.service';
 
-import { EnergyDetailComponent } from './energy-detail.component';
+@Component({
+  selector: 'app-energy-detail',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],
+  templateUrl: './energy-detail.component.html',
+  styleUrl: './energy-detail.component.css'
+})
+export class EnergyDetailComponent implements OnInit {
 
-describe('EnergyDetailComponent', () => {
-  let component: EnergyDetailComponent;
-  let fixture: ComponentFixture<EnergyDetailComponent>;
+  energyDetail:EnergyDetail[]=[]
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EnergyDetailComponent]
-    })
-    .compileComponents();
+  constructor(private energyDetailService:EnergyDetailService){}
 
-    fixture = TestBed.createComponent(EnergyDetailComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit(): void {
+    this.energyDetailList()   
+      
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  energyDetailList(){
+    this.energyDetailService.getEnergyDetailList().subscribe(
+      data => {
+        this.energyDetail = data
+        console.log(this.energyDetail)
+      }
+    )
+  }
+  
+
+}

@@ -18,11 +18,11 @@ export class EnergyTypeComponent implements OnInit {
   constructor(private energyTypeService:EnergyTypeService){}
 
   ngOnInit(): void {
-    this.energyType    
+    this.energyTypeList()   
       
   }
 
-  EnergyTypeList(){
+  energyTypeList(){
     this.energyTypeService.getEnergyTypeList().subscribe(
       data => {
         this.energyType = data

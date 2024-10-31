@@ -1,27 +1,44 @@
-<div>
-    <div class="col-10 mx-auto my-5"></div>
-    <table class="table table-striped-columns">
-        <thead>
-            <tr>                
-                <th>documentId</th>
-                <th>name</th>
-                <th>lastName</th>
-                <th>email</th>
-                <th>address</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (item of user; track $index) {
-            <tr>
-                <td>{{item.documentId}}</td>                
-                <td>{{item.name}}</td>
-                <td>{{item.lastName}}</td>
-                <td>{{item.email}}</td>
-                <td>{{item.address}}</td>
-            </tr>
-            }
-        </tbody>
-        
-    </table>
-</div>
-
+<div class="col-10 mx-auto my-5">
+    <form [formGroup]="userForm">
+      <div class="form-group" *ngIf="id == null">      
+        <label for="documentId">DocumentId:</label>
+        <input id="documentId" class="form-control" formControlName="document">
+        <div *ngIf="userForm.get('document')?.invalid && userForm.get('documentId')?.touched">
+          <small *ngIf="userForm.get('documentId')?.errors?.['required']">Document required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="nombre">Name:</label>
+        <input id="name" class="form-control" formControlName="name">
+        <div *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched">
+          <small *ngIf="userForm.get('name')?.errors?.['required']">Name required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">LastName:</label>
+        <input id="lastName" class="form-control" formControlName="lastName">
+        <div *ngIf="userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched">
+          <small *ngIf="userForm.get('lastName')?.errors?.['required']">Last Name required.</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" class="form-control" formControlName="email">
+        <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+          <small *ngIf="userForm.get('email')?.errors?.['required']">Email required .</small>
+        </div>      
+      </div>
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input id="address" class="form-control" formControlName="address">
+        <div *ngIf="userForm.get('address')?.invalid && userForm.get('address')?.touched">
+          <small *ngIf="userForm.get('address')?.errors?.['address']">Address required.</small>
+        </div>        
+      </div>  
+      
+  
+      <button type="button" class="btn btn-outline-primary" [class.disabled]="userForm.invalid" [disabled]="userForm.invalid" (click)="onSubmit()">
+        {{ id ? 'Update' : 'Create' }}
+      </button>
+    </form>
+  </div>
